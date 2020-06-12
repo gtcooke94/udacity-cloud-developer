@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9c5a8003-1c58-4207-b843-85f2355aaf4a",
+		"_postman_id": "8cb40204-0882-4a94-90b1-5d504b222b25",
 		"name": "udacity-c2-basic-server",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,10 +13,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/",
 							"protocol": "http",
@@ -34,13 +30,27 @@
 				},
 				{
 					"name": "/cars filter",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "325b9010-644b-43d3-9140-cd9d701b9c96",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(`{\"make\":\"toyota\",\"type\":\"sedan\",\"model\":\"prius\",\"cost\":22,\"id\":2}`);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/?make=toyota",
 							"protocol": "http",
@@ -74,10 +84,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8082/cars/2",
 							"protocol": "http",
@@ -95,6 +101,24 @@
 				},
 				{
 					"name": "/cars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd503bb1-422f-43f3-9b78-00dc5b33af74",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(`{\"make\":\"ford\",\"type\":\"sedan\",\"model\":\"focus\",\"cost\":12,\"id\":9}`);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [
@@ -123,7 +147,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "http://localhost:8082/",
@@ -131,7 +156,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9b4015b7-faf5-4924-8661-7728ba94e410",
+						"id": "853b9bf6-4612-4eac-8c1f-af48964109d8",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -148,10 +173,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/",
 					"protocol": "http",
@@ -172,7 +193,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "277a3edb-b69d-4dcd-9b13-00d00faaca25",
+						"id": "6968dc76-ab86-462b-a79b-b319871990c6",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -190,10 +211,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons/:name",
 					"protocol": "http",
@@ -221,7 +238,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "7df7eec7-78b4-46f4-b2f5-2a7b994747e9",
+						"id": "c9c3309c-e96b-4e48-8aa6-3164d9fae419",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -242,10 +259,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons?name=george",
 					"protocol": "http",
@@ -272,7 +285,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "23433ca1-6ffc-4149-9e3c-97514d889ac5",
+						"id": "a7cd6c10-4254-4b6c-be45-1f5bce9acf33",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {",
 							"    pm.response.to.have.status(200);",
@@ -321,7 +334,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "444e71e3-ae8c-469a-9da1-22aa3ee0792d",
+						"id": "cdd44f50-a3f0-40e9-8f7d-7f4938860ade",
 						"exec": [
 							"pm.test(\"Status code is 400\", function () {",
 							"    pm.response.to.have.status(400);",
@@ -334,10 +347,6 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8082/persons/",
 					"protocol": "http",
@@ -358,7 +367,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "6f442aeb-7c6b-401b-a76d-03a2c7b2cca9",
+				"id": "1c93dbfc-7bc6-4323-a676-d3efe6fc33c2",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -368,7 +377,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "fae73fa3-4d3b-4528-a1af-a150ef18a902",
+				"id": "ea01c2a3-1bff-47de-b897-3875887eca54",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -383,5 +392,6 @@
 			"value": "http://localhost:8082",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
